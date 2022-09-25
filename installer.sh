@@ -2,7 +2,6 @@ sudo source /temp/bar.sh
 
 generate_some_output_and_sleep() {
     apt install -y wget apt-transport-https
-    sleep 0.3
     mkdir -p /etc/apt/keyrings
     wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc 
     echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list 
@@ -18,11 +17,6 @@ main() {
     setup_scroll_area
     for i in {1..99}
     do
-        if [ $i = 50 ]; then
-            echo "waiting for user input"
-            block_progress_bar $i
-            read -p "User input: "
-        else
             generate_some_output_and_sleep
             draw_progress_bar $i
         fi
