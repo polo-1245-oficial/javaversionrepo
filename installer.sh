@@ -1,4 +1,4 @@
-sudo source ./temp/bar.sh
+sudo source /temp/bar.sh
 
 generate_some_output_and_sleep() {
     apt install -y wget apt-transport-https
